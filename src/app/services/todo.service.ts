@@ -22,8 +22,9 @@ export class TodoService {
     this.socket.emit('updateTask', description);
   }
 
-  deleteTask(id: String) {
+  deleteTask(id: string) {
     this.socket.emit('deleteTask', id);
+    console.log(id);
   }
 
   onDeleteTask() {

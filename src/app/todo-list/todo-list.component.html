@@ -1,18 +1,23 @@
-<div>
-    <header>
-        <h1>ToDo List</h1>
-        <input type="text" placeholder="Nuevo To-Do" #titleInput (keyup.enter)="onClick(titleInput)">
-    </header>
-    <section>
+<div class="card shadow-lg mt-5">
+    <div class="card-header text-center">
+        <h1 class="display-6 fw-bold">ToDo List</h1>
+    </div>
+    <div class="card-body p-4">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Nuevo To-Do" #titleInput (keyup.enter)="onClick(titleInput)">
+            <button class="btn btn-success border-0" (click)="onClick(titleInput)">Añadir</button>
+        </div>
         <!-- <input type="checkbox"> -->
-        <ul>
-           <li *ngFor="let todo of todos">
-                <div class="view">
+        <ul class="list-group">
+           <li class="list-group-item" *ngFor="let todo of todos">
+                <span>
                     <input type="checkbox" (click)="toggleCompleteTodo(todo.id)" [checked]="todo.isCompleted">
-                    <label>{{todo.description}}</label>
-                    <button class="destroy" (click)="deleteTodo(todo.id)">Borrar To-Do</button>
-                </div>
+                    {{todo.description}}
+                    <span class="float-end text-secondary">
+                        <button class="btn btn-danger" (click)="deleteTodo(todo.id)">Borrar To-Do</button>
+                    </span>
+                </span>
            </li> 
         </ul>
-    </section>
+    </div>
 </div>

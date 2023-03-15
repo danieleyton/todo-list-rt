@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../models/todo.model';
 import { TodoService } from '../services/todo.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-todo-list',
@@ -26,7 +27,7 @@ export class TodoListComponent implements OnInit {
     });
 
     this.todoService.onDeleteTask().subscribe((data) => {
-      console.log(data);
+      console.log(data as string);
       this.deleteTodo((data as string));
     });
 
@@ -37,10 +38,11 @@ export class TodoListComponent implements OnInit {
   }
 
   addTodo(description: string) {
-    this.todos.push({id: 'a', description: description, isCompleted: false});
+    this.todos.push({id: (uuidv4() as string), description: description, isCompleted: false});
   }
 
   deleteTodo(id: string) {
+    console.log(id);
     const index = this.todos.findIndex((obj) => {
       return obj.id === id;
     });
@@ -48,6 +50,7 @@ export class TodoListComponent implements OnInit {
     if (index !== -1) {
       this.todos.splice(index, 1);
       this.todoService.deleteTask(id);
+      console.log(index);
     }
   }
 
