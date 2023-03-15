@@ -1,0 +1,18 @@
+<div>
+    <header>
+        <h1>ToDo List</h1>
+        <input type="text" placeholder="Nuevo To-Do" #titleInput (keyup.enter)="onClick(titleInput)">
+    </header>
+    <section>
+        <!-- <input type="checkbox"> -->
+        <ul>
+           <li *ngFor="let todo of todos">
+                <div class="view">
+                    <input type="checkbox" (click)="toggleCompleteTodo(todo.id)" [checked]="todo.isCompleted">
+                    <label>{{todo.description}}</label>
+                    <button class="destroy" (click)="deleteTodo(todo.id)">Borrar To-Do</button>
+                </div>
+           </li> 
+        </ul>
+    </section>
+</div>
